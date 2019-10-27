@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -Eeo pipefail
+cd $(dirname $0)
+
+DB_NAME=test_db \
+DB_USERNAME=zamro \
+DB_PASSWORD=supersecretpassword \
+DB_ROOT_PASSWORD=rootpassword.! \
+DOCKER_NETWORK=docker-network \
+MARIADB_IMAGE=mariadb:10.2.14 \
+vagrant up

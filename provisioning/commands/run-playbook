@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -Eeo pipefail
+
+# this file helps running ansible roles locally
+
+cd $(dirname $0)/..
+
+export ANSIBLE_ROLES_PATH=$ANSIBLE_ROLES_PATH:$(pwd)/roles
+
+ansible-playbook ./playbooks/"${1}" -i inventories/localhost/hosts
+

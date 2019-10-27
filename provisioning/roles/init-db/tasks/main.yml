@@ -1,0 +1,23 @@
+---
+- name: Create docker network
+  become: true
+  docker_network:
+    name: "{{ docker_network }}"
+
+- name: Launch Database Container
+  become: true
+  docker_container:
+    tls_verify: false
+    name: "{{ db_name }}"
+    image: "{{ docker_mariadb_image }}"
+    restart: true
+    pull: true
+    state: started
+    networks:
+      - name: "{{ docker_network }}"
+    env:
+      MYSQL_USER: "{{ db_username }}"
+      MYSQL_PASSWORD: "{{ db_password }}"
+      MYSQL_ROOT_PASSWORD: "{{ db_root_password }}"
+
+

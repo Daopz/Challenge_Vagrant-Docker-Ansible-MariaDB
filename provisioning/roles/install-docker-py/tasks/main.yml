@@ -1,0 +1,19 @@
+---
+- name: Install setuptools
+  yum:
+    name: python-setuptools
+    use_backend: yum
+    state: present
+  become: yes
+
+- name: Install latest pip
+  easy_install:
+    name: pip
+    state: latest
+  become: yes
+
+- name: Install docker python
+  pip:
+    name: docker
+  become: yes
+
